@@ -23,11 +23,17 @@ namespace MAA_Public.Controllers
             //cache.StringSet("key2", 25);
 
             // Simple get of data types from the cache
-            string key1 = cache.StringGet("key1");
-            int key2 = (int)cache.StringGet("key2");
 
-            ViewBag.key1 = key1;
-            ViewBag.key2 = key2;
+
+            string keyListNames = cache.StringGet("keyListNames");
+
+            if (keyListNames == null) {keyListNames = "cache not found";}
+
+            List<string> listNames = new List<string>();
+
+            listNames = keyListNames.Split(',').ToList();
+
+            ViewBag.listNames = listNames;
 
             return View();
         }
