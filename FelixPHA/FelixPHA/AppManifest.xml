@@ -3,7 +3,7 @@
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="FelixPHA"
      ProductID="{84c0e34e-bf9c-42d9-b557-0a5e588bea0a}"
-     Version="1.0.0.4"
+     Version="1.0.0.5"
      SharePointMinVersion="16.0.0.0"
 >
   <Properties>

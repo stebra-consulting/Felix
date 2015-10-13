@@ -17,20 +17,14 @@ namespace MAA_Public.Controllers
 
             IDatabase cache = connection.GetDatabase();
 
-            // Perform cache operations using the cache object...
-            // Simple put of integral data types into the cache
-            //cache.StringSet("key1", "value");
-            //cache.StringSet("key2", 25);
-
             // Simple get of data types from the cache
-
-
             string keyListNames = cache.StringGet("keyListNames");
 
+            // Check if cache target is null
             if (keyListNames == null) {keyListNames = "cache not found";}
 
+            // Convert string "listname1, listname2, listname3..." to List<string>
             List<string> listNames = new List<string>();
-
             listNames = keyListNames.Split(',').ToList();
 
             ViewBag.listNames = listNames;
