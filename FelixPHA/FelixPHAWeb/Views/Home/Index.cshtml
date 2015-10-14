@@ -4,17 +4,22 @@
 
 <div class="jumbotron">
     <h2>Stored: </h2>
-    <p >
-
-       @ViewBag.Lists
-
+    <p>
+        @foreach (var news in ViewBag.News)
+            {
+            @Html.Raw(news.Title)
+            @Html.Raw(news.Article)
+            @Html.Raw(news.Body)
+        }
     </p>
     <p><a href="http://dev.office.com" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Overview</h2>
-        <p>SharePoint introduces a Cloud App Model that enables you to create apps. Learn what apps for SharePoint are, why you should build them, and the concepts that are fundamental to building them for SharePoint.</p>
+        <h2></h2>
+        <p>
+
+        </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=294439">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">

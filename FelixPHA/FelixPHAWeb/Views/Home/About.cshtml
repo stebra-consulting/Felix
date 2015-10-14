@@ -2,6 +2,12 @@
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h3>Listnames from Cache:</h3>
 
-<p>Use this area to provide additional information.</p>
+
+@foreach (var news in ViewBag.NewsFromCache)
+{
+    @Html.Raw(news.Title)
+    @Html.Raw(news.Article)
+    @Html.Raw(news.Body)
+}
