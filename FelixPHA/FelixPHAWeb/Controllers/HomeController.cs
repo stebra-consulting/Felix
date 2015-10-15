@@ -41,18 +41,11 @@ namespace FelixPHAWeb.Controllers
                     clientContext.Load(items);
                     clientContext.ExecuteQuery();
 
+                    // put this into News constructor ??
                     //list that holds each news
                     List<News> MyNews = new List<News>();
-
                     //make news from listitem-data
                     foreach (ListItem item in items) { 
-                   
-                        //News currentNews = new News();
-                        //currentNews.Title = item["Title"].ToString();
-                        //currentNews.Article = item["Article"].ToString();
-                        //currentNews.Body = item["Body"].ToString();
-
-                        //MyNews.Add(currentNews);
 
                         MyNews.Add(
                             new News() {
@@ -61,26 +54,13 @@ namespace FelixPHAWeb.Controllers
                                 Body = item["Body"].ToString()}
                             );
                     }
+                    // put this into News constructor ??
+
+                    //save cache
+                    NewsContext newsContext = new NewsContext();
+                    newsContext.saveCache(MyNews);
 
                     ViewBag.News = MyNews;
-
-                    //
-                    //  Set Cache Block
-                    //
-                    ConnectionMultiplexer connection = ConnectionMultiplexer.Connect(
-                        "memory.redis.cache.windows.net,abortConnect=false,ssl=true,password=nv2w3Oz+20mPCR2vVQVLCwUc3PAYpokJy02LK0JcEHQ=");
-
-                    IDatabase cache = connection.GetDatabase();
-
-                    //set one cacheKey for every news in newslist
-                    for (int i = 0; i < MyNews.Count; i++)
-                    {
-                        string index = i.ToString();
-                        string content = MyNews[i].Title;
-                        content += "," + MyNews[i].Article;
-                        content += "," + MyNews[i].Body;
-                        cache.StringSet(index, content, TimeSpan.FromMinutes(60)); //set cache
-                    }
                 }
             }
 
@@ -90,37 +70,10 @@ namespace FelixPHAWeb.Controllers
         public ActionResult About()
         {
 
-            ConnectionMultiplexer connection = ConnectionMultiplexer.Connect(
-                "memory.redis.cache.windows.net,abortConnect=false,ssl=true,password=nv2w3Oz+20mPCR2vVQVLCwUc3PAYpokJy02LK0JcEHQ=");
-
-            IDatabase cache = connection.GetDatabase();
-
-            //// Simple get of data types from the cache
-
-            //make the code more readably
-            int title = 0;
-            int article = 1;
-            int body = 2;
-
-            //make list of news from cache
+            //read cache
             List<News> MyNews = new List<News>();
-            int key = 0;
-            while (true) { //While there is a valid cache, populate list of news
-                string cachedContent = cache.StringGet(key.ToString());
-                if (cachedContent != null)
-                {
-                    News currentNews = new News();
-                    currentNews.Title = cachedContent.Split(',')[title];
-                    currentNews.Article = cachedContent.Split(',')[article];
-                    currentNews.Body = cachedContent.Split(',')[body];
-                    MyNews.Add(currentNews);
-
-                }
-                else {
-                    break;
-                }
-                key++;
-            }
+            NewsContext newsContext = new NewsContext();
+            MyNews = newsContext.readCache();
 
             ViewBag.NewsFromCache = MyNews;
             return View();
