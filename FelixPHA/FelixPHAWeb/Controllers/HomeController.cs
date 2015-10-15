@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using StackExchange.Redis;
 using FelixPHAWeb.Models;
-using System.Xml;
 
 namespace FelixPHAWeb.Controllers
 {
@@ -48,12 +47,19 @@ namespace FelixPHAWeb.Controllers
                     //make news from listitem-data
                     foreach (ListItem item in items) { 
                    
-                        News currentNews = new News();
-                        currentNews.Title = item["Title"].ToString();
-                        currentNews.Article = item["Article"].ToString();
-                        currentNews.Body = item["Body"].ToString();
+                        //News currentNews = new News();
+                        //currentNews.Title = item["Title"].ToString();
+                        //currentNews.Article = item["Article"].ToString();
+                        //currentNews.Body = item["Body"].ToString();
 
-                        MyNews.Add(currentNews);
+                        //MyNews.Add(currentNews);
+
+                        MyNews.Add(
+                            new News() {
+                                Title = item["Title"].ToString(),
+                                Article = item["Article"].ToString(),
+                                Body = item["Body"].ToString()}
+                            );
                     }
 
                     ViewBag.News = MyNews;
@@ -108,6 +114,7 @@ namespace FelixPHAWeb.Controllers
                     currentNews.Article = cachedContent.Split(',')[article];
                     currentNews.Body = cachedContent.Split(',')[body];
                     MyNews.Add(currentNews);
+
                 }
                 else {
                     break;
