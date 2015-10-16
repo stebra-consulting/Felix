@@ -8,7 +8,6 @@ namespace FelixPHAWeb.Models
 {
     public class NewsContext
     {
-        public List<News> ListOfNews { get; set; }
         private IDatabase Cache { get; set; }
 
         public NewsContext() //constructor

@@ -4,15 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using StackExchange.Redis;
 using FelixPHAWeb.Models;
 
 namespace FelixPHAWeb.Controllers
 {
-    public class HomeController : Controller
+    public class NewsController : Controller
     {
         [SharePointContextFilter]
-        public ActionResult Index()
+        public ActionResult Save()
         {
             var spContext = SharePointContextProvider.Current.GetSharePointContext(HttpContext);
             using (var clientContext = spContext.CreateUserClientContextForSPHost())
@@ -41,33 +40,30 @@ namespace FelixPHAWeb.Controllers
                     clientContext.Load(items);
                     clientContext.ExecuteQuery();
 
-                    // put this into News constructor ??
-                    //list that holds each news
-                    List<News> MyNews = new List<News>();
-                    //make news from listitem-data
-                    foreach (ListItem item in items) { 
-
-                        MyNews.Add(
-                            new News() {
+                    //Convert and simplify SharePoint ListItemCollection to List<News>
+                    List<News> allNews = new List<News>();
+                    foreach (ListItem item in items)
+                    {
+                        allNews.Add(
+                            new News()
+                            {
                                 Title = item["Title"].ToString(),
                                 Article = item["Article"].ToString(),
-                                Body = item["Body"].ToString()}
-                            );
+                                Body = item["Body"].ToString()
+                            });
                     }
-                    // put this into News constructor ??
 
                     //save cache
                     NewsContext newsContext = new NewsContext();
-                    newsContext.saveCache(MyNews);
+                    newsContext.saveCache(allNews);
 
-                    ViewBag.News = MyNews;
+                    return View(allNews);
                 }
             }
 
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult Load()
         {
 
             //read cache
@@ -75,17 +71,7 @@ namespace FelixPHAWeb.Controllers
             NewsContext newsContext = new NewsContext();
             MyNews = newsContext.readCache();
 
-            ViewBag.NewsFromCache = MyNews;
-            return View();
+            return View(MyNews);
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-
     }
 }

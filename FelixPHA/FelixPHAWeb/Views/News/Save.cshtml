@@ -1,0 +1,18 @@
+﻿@model IEnumerable<FelixPHAWeb.Models.News>
+
+@using FelixPHAWeb.Models;
+
+@{
+    ViewBag.Title = "Save";
+}
+
+@foreach (News news in @Model)
+{
+    @Html.Raw(news.Title)
+    <br />
+    @Html.Raw(news.Article)
+    <br />
+    @Html.Raw(news.Body)
+    <br />
+}
+
