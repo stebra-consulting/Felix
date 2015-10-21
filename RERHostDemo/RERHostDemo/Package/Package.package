@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d5bb38a2-2caa-464c-ae9e-c5a7aa376e7a" solutionId="d5bb38a2-2caa-464c-ae9e-c5a7aa376e7a" resetWebServer="false" sharePointProductVersion="16.0" name="RERHostDemo" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="2ac8c508-0ec6-4410-a422-eb8bac4353f3" />
+  </features>
+</package>
