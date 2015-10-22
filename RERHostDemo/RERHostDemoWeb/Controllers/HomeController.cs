@@ -43,6 +43,7 @@ namespace RERHostDemoWeb.Controllers
                       EventReceiverType.ItemAdded,
                       EventReceiverSynchronization.Asynchronous,
                       "RERHostReceiver",
+                      //Follow guide to retrieve below code http://blog.virtosoftware.com/2015/01/adding-remote-event-receivers-to-list.html
                       "https://servicebosse.servicebus.windows.net/73036694/1885843836/obj/cc07a6a4-472d-4401-bc06-1dd3ef1fc80f/Services/RERHostReceiver.svc",
                           10);
                 }

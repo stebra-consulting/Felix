@@ -1,0 +1,12 @@
+﻿@model IEnumerable<AzureTableTestWeb.Models.StebraEntity>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var stebra in Model)
+{
+    <div class="jumbotron">
+        <h4>@stebra.RowKey</h4>
+        <img src="@stebra.ImageUrl" />
+    </div>
+}
