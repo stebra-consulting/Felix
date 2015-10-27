@@ -17,19 +17,6 @@ namespace TestPNPEventReceiverWeb.Controllers
         public ActionResult Index()
         {
 
-            var storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-            var client = storageAccount.CreateCloudTableClient();
-
-            var newsTable = client.GetTableReference("NewsTable");
-
-            if (!newsTable.Exists())
-            {
-                newsTable.Create();
-            }
-
-
             var spContext = SharePointContextProvider.Current.GetSharePointContext(HttpContext);
             using (var clientContext = spContext.CreateUserClientContextForSPHost())
             {
@@ -57,22 +44,11 @@ namespace TestPNPEventReceiverWeb.Controllers
                     clientContext.Load(items);
                     clientContext.ExecuteQuery();
 
-                    //Convert and simplify SharePoint ListItemCollection
-                    var batchOperation = new TableBatchOperation(); //move outside loop //
-                    foreach (ListItem item in items)
-                    {
-
-                        var entity = new StebraEntity(
-                            "News", 
-                            item["Title"].ToString(),
-                            item["Article"].ToString(), 
-                            "Descriptive text", 
-                            item["Datum"].ToString(),
-                            item["Body"].ToString());
+                    //Create a new Azure Table for this app
+                    AzureTableManager.SelectTable();
                         
-                        batchOperation.Insert(entity);
-                    }
-                    newsTable.ExecuteBatch(batchOperation); //move outside loop //
+                    //Save the ListItems to AzureTable as StebraEntities
+                    AzureTableManager.SaveNews(items);
 
                     return View();
                 }
@@ -83,9 +59,11 @@ namespace TestPNPEventReceiverWeb.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+
+            IEnumerable<StebraEntity> news = AzureTableManager.LoadAllNews();
+
+            return View(news);
         }
 
         public ActionResult Contact()
