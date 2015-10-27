@@ -1,0 +1,12 @@
+﻿@model IEnumerable<AzTableNewSDKProvider1Web.Models.KittehEntity>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var kitteh in Model)
+{
+    <div class="jumbotron">
+        <h4>@kitteh.RowKey</h4>
+        <img src="@kitteh.ImageUrl" />
+    </div>
+}

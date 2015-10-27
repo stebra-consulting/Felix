@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPNPEventReceiver", "TestPNPEventReceiver\TestPNPEventReceiver.csproj", "{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPNPEventReceiverWeb", "TestPNPEventReceiverWeb\TestPNPEventReceiverWeb.csproj", "{56EF50D1-F28F-45ED-AF79-60AF0A6A0451}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51AB0D67-9754-48D0-ADF0-9AF45C29DA03}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{56EF50D1-F28F-45ED-AF79-60AF0A6A0451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56EF50D1-F28F-45ED-AF79-60AF0A6A0451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56EF50D1-F28F-45ED-AF79-60AF0A6A0451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56EF50D1-F28F-45ED-AF79-60AF0A6A0451}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
