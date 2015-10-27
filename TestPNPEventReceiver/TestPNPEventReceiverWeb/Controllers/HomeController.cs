@@ -29,14 +29,6 @@ namespace TestPNPEventReceiverWeb.Controllers
                 newsTable.Create();
             }
 
-            //
-            //var entity = new StebraEntity("NewsType", "NewsItem");
-            //entity.Description = "This is a Newsentry";
-
-            //var batchOperation = new TableBatchOperation();
-            //batchOperation.Insert(entity);
-            //newsTable.ExecuteBatch(batchOperation);
-
 
             var spContext = SharePointContextProvider.Current.GetSharePointContext(HttpContext);
             using (var clientContext = spContext.CreateUserClientContextForSPHost())
@@ -69,19 +61,14 @@ namespace TestPNPEventReceiverWeb.Controllers
                     var batchOperation = new TableBatchOperation(); //move outside loop //
                     foreach (ListItem item in items)
                     {
-                        string newsType = "News";
-                        var newsEntry = item["Title"].ToString();
-                        var newsArticle = item["Article"].ToString();
-                        string newsDescription = "Descriptive text";
-                        var newsDate = item["Datum"].ToString();
-                        //var newsBody = item["Body"].ToString();
 
                         var entity = new StebraEntity(
-                            newsType, 
-                            newsEntry,
-                            newsDescription, 
-                            newsArticle, 
-                            newsDate);
+                            "News", 
+                            item["Title"].ToString(),
+                            item["Article"].ToString(), 
+                            "Descriptive text", 
+                            item["Datum"].ToString(),
+                            item["Body"].ToString());
                         
                         batchOperation.Insert(entity);
                     }

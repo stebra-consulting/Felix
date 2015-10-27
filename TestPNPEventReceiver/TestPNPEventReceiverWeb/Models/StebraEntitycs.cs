@@ -14,7 +14,7 @@ namespace TestPNPEventReceiverWeb.Models
         public StebraEntity()
         { }
         public StebraEntity(string StebraType, string NewsEntry,
-            string NewsDescription, string NewsArticle, string NewsDate)
+            string NewsDescription, string NewsArticle, string NewsDate, string NewsBody)
         {
             //hold properties that mirrors listitem-columns
             this.PartitionKey = StebraType;
@@ -23,12 +23,14 @@ namespace TestPNPEventReceiverWeb.Models
             this.Description = NewsDescription;
             this.Article = NewsArticle;
             this.Date = NewsDate;
+            this.Body = NewsBody;
         }
 
         public string Description { get; set; }
         public string Article { get; set; }
         public string Title { get; set; }
         public string Date { get; set; }
+        public string Body { get; set; }
     }
 
 }
