@@ -12,31 +12,35 @@ namespace TestPNPEventReceiverWeb
 {
     public class AzureTableManager
     {
+        //property that holds the apps Tablereference
         public static CloudTable NewsTable { get; set; }
+
+        //Connection to Azure Table
         public static CloudStorageAccount StorageAccount = CloudStorageAccount.Parse(
                 CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
         public static CloudTableClient Client = StorageAccount.CreateCloudTableClient();
 
 
+        //Create a new Azure Table for this App. workaround from having to wait to delete table with same name
         public static void SelectTable() {
             int id = 0;
             while (true) {
-                var tempTable = Client.GetTableReference("NewsTable" + id.ToString());
+                var tempTable = Client.GetTableReference("NewsTable" + id.ToString()); //check this table
                 if (tempTable.Exists())
                 {
-                    //tempTable.Delete(); //Delete tables manually for now.
+                    //tempTable.Delete(); //Delete tables manually for now. via serverexplorer in VS
                     id++;
                 }
                 else {
                     tempTable.Create();
-                    NewsTable = tempTable;
+                    NewsTable = tempTable; //use this table
                     break;
                 }
             } 
         }
 
-        public static void SaveNews(ListItemCollection listItems) {
+        //save news to azure table from inparameter listItems
+        public static void SaveNews(ListItemCollection listItems) { 
 
             var batchOperation = new TableBatchOperation(); //make only one call to Azure Table, use Batch.
             foreach (ListItem item in listItems)
@@ -56,13 +60,17 @@ namespace TestPNPEventReceiverWeb
             NewsTable.ExecuteBatch(batchOperation); //Execute Batch
         }
 
+        //Load all news from Azure Table, return stebras
         public static IEnumerable<StebraEntity> LoadAllNews() {
 
-            
+            //Query all entities where "PartitionKey" is "News"
             var allNewsQuery = new TableQuery<StebraEntity>()
                 .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "News"));
 
+            //Entities to List
             var stebras = NewsTable.ExecuteQuery(allNewsQuery).ToList();
+
+            //Return List
             return stebras;
            
         }

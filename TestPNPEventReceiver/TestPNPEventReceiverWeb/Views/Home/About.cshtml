@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<TestPNPEventReceiverWeb.Models.StebraEntity>
 
-@foreach (var newsEntry in Model)
+@foreach (var stebra in Model)
 {
     <div class="jumbotron">
-        <h4>@newsEntry.RowKey</h4>
-        <p>@Html.Raw(newsEntry.Body)</p>
+        <h4>@stebra.RowKey</h4>
+        <p><i>@stebra.Article @stebra.Date</i></p>
+        <p>@Html.Raw(stebra.Body)</p>
     </div>
 }

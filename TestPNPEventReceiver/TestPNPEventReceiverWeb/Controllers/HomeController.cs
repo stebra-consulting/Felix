@@ -60,7 +60,6 @@ namespace TestPNPEventReceiverWeb.Controllers
         public ActionResult About()
         {
 
-
             IEnumerable<StebraEntity> news = AzureTableManager.LoadAllNews();
 
             return View(news);
