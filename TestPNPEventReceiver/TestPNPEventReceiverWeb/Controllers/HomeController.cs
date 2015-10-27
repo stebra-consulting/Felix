@@ -17,27 +17,6 @@ namespace TestPNPEventReceiverWeb.Controllers
         public ActionResult Index()
         {
 
-            var storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-            var client = storageAccount.CreateCloudTableClient();
-
-            var newsTable = client.GetTableReference("NewsTable");
-
-            if (!newsTable.Exists())
-            {
-                newsTable.Create();
-            }
-
-            //
-            //var entity = new StebraEntity("NewsType", "NewsItem");
-            //entity.Description = "This is a Newsentry";
-
-            //var batchOperation = new TableBatchOperation();
-            //batchOperation.Insert(entity);
-            //newsTable.ExecuteBatch(batchOperation);
-
-
             var spContext = SharePointContextProvider.Current.GetSharePointContext(HttpContext);
             using (var clientContext = spContext.CreateUserClientContextForSPHost())
             {
@@ -65,27 +44,11 @@ namespace TestPNPEventReceiverWeb.Controllers
                     clientContext.Load(items);
                     clientContext.ExecuteQuery();
 
-                    //Convert and simplify SharePoint ListItemCollection
-                    var batchOperation = new TableBatchOperation(); //move outside loop //
-                    foreach (ListItem item in items)
-                    {
-                        string newsType = "News";
-                        var newsEntry = item["Title"].ToString();
-                        var newsArticle = item["Article"].ToString();
-                        string newsDescription = "Descriptive text";
-                        var newsDate = item["Datum"].ToString();
-                        //var newsBody = item["Body"].ToString();
+                    //Create a new Azure Table for this app
+                    AzureTableManager.SelectTable();
 
-                        var entity = new StebraEntity(
-                            newsType, 
-                            newsEntry,
-                            newsDescription, 
-                            newsArticle, 
-                            newsDate);
-                        
-                        batchOperation.Insert(entity);
-                    }
-                    newsTable.ExecuteBatch(batchOperation); //move outside loop //
+                    //Save the ListItems to AzureTable as StebraEntities
+                    AzureTableManager.SaveNews(items);
 
                     return View();
                 }
@@ -96,9 +59,11 @@ namespace TestPNPEventReceiverWeb.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+
+            IEnumerable<StebraEntity> news = AzureTableManager.LoadAllNews();
+
+            return View(news);
         }
 
         public ActionResult Contact()

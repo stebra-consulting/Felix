@@ -1,7 +1,9 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model IEnumerable<TestPNPEventReceiverWeb.Models.StebraEntity>
 
-<p>Use this area to provide additional information.</p>
+@foreach (var newsEntry in Model)
+{
+    <div class="jumbotron">
+        <h4>@newsEntry.RowKey</h4>
+        <p>@Html.Raw(newsEntry.Body)</p>
+    </div>
+}
