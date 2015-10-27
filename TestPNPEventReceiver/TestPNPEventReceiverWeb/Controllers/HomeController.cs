@@ -46,7 +46,7 @@ namespace TestPNPEventReceiverWeb.Controllers
 
                     //Create a new Azure Table for this app
                     AzureTableManager.SelectTable();
-
+                        
                     //Save the ListItems to AzureTable as StebraEntities
                     AzureTableManager.SaveNews(items);
 
