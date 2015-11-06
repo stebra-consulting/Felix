@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="AzureWebEndPoint.test1" CodeBehind="test1.svc.cs" %>

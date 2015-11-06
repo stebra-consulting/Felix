@@ -35,11 +35,24 @@ function initializePage()
         //this is not correct
         //var signature = "BuOnRuOPlfVXkLxl2qtp/hUJPGzjl8zdaqqg1mqXGZ8SJN9gTN38ChZXVJaNqsBMh+JXo4KfyMAFeDSnhBROxg==";
 
-        var stringToSign = VERB + "\n" +
-                           Content-MD5 + "\n" +
-                           Content-Type + "\n" +
-                           Date + "\n" +
-                           CanonicalizedResource;
+
+        //signature template
+        //var stringToSign =
+        //                   VERB + "\n" + 
+        //                   Content-MD5 + "\n" +
+        //                   Content-Type + "\n" +
+        //                   Date + "\n" +
+        //                   CanonicalizedResource;
+
+        //signature 
+        var stringToSign =
+                   "GET" + "\n" +
+                   Content-MD5 + "\n" +
+                   Content-Type + "\n" +
+                   dateInUTC + "\n" +
+                   CanonicalizedResource;
+
+
 
         alert("preparing ajax");
 

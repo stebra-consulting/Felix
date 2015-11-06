@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureWebEndPoint", "AzureWebEndPoint\AzureWebEndPoint.csproj", "{04BDCB81-7863-404B-B4AE-902C41C4AAB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{0EE8F012-08C4-44D7-BBF7-CCFDF476AF25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A3939755-54F4-4D1B-9E4B-1B8B66B61E52}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{D28DA402-F6F5-4D7A-B986-4D006477C002}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\AzureWebEndPoint.json = PublishScripts\Templates\AzureWebEndPoint.json
+		PublishScripts\Templates\AzureWebEndPoint.param.dev.json = PublishScripts\Templates\AzureWebEndPoint.param.dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04BDCB81-7863-404B-B4AE-902C41C4AAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04BDCB81-7863-404B-B4AE-902C41C4AAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04BDCB81-7863-404B-B4AE-902C41C4AAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04BDCB81-7863-404B-B4AE-902C41C4AAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3939755-54F4-4D1B-9E4B-1B8B66B61E52} = {0EE8F012-08C4-44D7-BBF7-CCFDF476AF25}
+		{D28DA402-F6F5-4D7A-B986-4D006477C002} = {0EE8F012-08C4-44D7-BBF7-CCFDF476AF25}
+	EndGlobalSection
+EndGlobal

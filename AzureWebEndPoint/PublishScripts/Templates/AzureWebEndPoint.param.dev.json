@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "AzureWebEndPoint"
+  },
+  "hostingPlanName": {
+    "value": "Default1"
+  },
+  "siteLocation": {
+    "value": "North Europe"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "0557a94a-130b-4e26-a97d-18fcd2e7ab4d"
+  },
+  "resourceGroup": {
+    "value": "Default-Web-NorthEurope"
+  }
+}
