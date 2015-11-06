@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="fc50ffa1-c9cf-4bfb-8f74-14a3f8d6b279" solutionId="fc50ffa1-c9cf-4bfb-8f74-14a3f8d6b279" resetWebServer="false" sharePointProductVersion="16.0" name="EventRecTest" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
-  <features>
-    <featureReference itemId="51048599-89ab-4a47-b9ce-d3fe4271a917" />
-  </features>
-</package>

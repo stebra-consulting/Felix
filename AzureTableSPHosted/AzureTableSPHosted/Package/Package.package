@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="91f8d2b4-c37e-4c29-8e07-e2db624a4434" 
+        solutionId="91f8d2b4-c37e-4c29-8e07-e2db624a4434" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="AzureTableSPHosted"
+        sharePointProductVersion="16.0">
+  <features>
+        <featureReference itemId="223c3f4c-b338-4ae1-8e02-3aab673eb22e" />
+  </features>
+</package>

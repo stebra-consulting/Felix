@@ -66,26 +66,26 @@ namespace TestPNPEventReceiverWeb
             }
 
             ////Add eventreceiver
-            //if (!rerExists)
-            //{
-            //    EventReceiverDefinitionCreationInformation receiver =
-            //        new EventReceiverDefinitionCreationInformation();
-            //    receiver.EventType = EventReceiverType.ItemAdded;
+            if (!rerExists)
+            {
+                EventReceiverDefinitionCreationInformation receiver =
+                    new EventReceiverDefinitionCreationInformation();
+                receiver.EventType = EventReceiverType.ItemAdded;
 
-            //    //Get WCF URL where this message was handled
-            //    OperationContext op = OperationContext.Current;
-            //    Message msg = op.RequestContext.RequestMessage;
-            //    receiver.ReceiverUrl = msg.Headers.To.ToString();
+                //Get WCF URL where this message was handled
+                OperationContext op = OperationContext.Current;
+                Message msg = op.RequestContext.RequestMessage;
+                receiver.ReceiverUrl = msg.Headers.To.ToString();
 
-            //    receiver.ReceiverName = RECEIVER_NAME;
-            //    receiver.Synchronization = EventReceiverSynchronization.Synchronous;
+                receiver.ReceiverName = RECEIVER_NAME;
+                receiver.Synchronization = EventReceiverSynchronization.Synchronous;
 
-            //    //Add the new event receiver to a list in the host web
-            //    jobsList.EventReceivers.Add(receiver);
-            //    clientContext.ExecuteQuery();
+                //Add the new event receiver to a list in the host web
+                jobsList.EventReceivers.Add(receiver);
+                clientContext.ExecuteQuery();
 
-            //    System.Diagnostics.Trace.WriteLine("Added ItemAdded receiver at " + receiver.ReceiverUrl);
-            //}
+                System.Diagnostics.Trace.WriteLine("Added ItemAdded receiver at " + receiver.ReceiverUrl);
+            }
         }
 
         public void RemoveEventReceiversFromHostWeb(ClientContext clientContext)
