@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace testInterface
+namespace AzureBlobModule
 {
     public class FilterConfig
     {
